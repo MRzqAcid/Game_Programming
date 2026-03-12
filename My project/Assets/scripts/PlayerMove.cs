@@ -29,6 +29,15 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.linearVelocity.y) < 0.1f)
+        {
+            Debug.Log("Jump!");
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
+    }
+
     void FixedUpdate()
     {
         // Menggerakan player ke kanan atau kiri menggunakan transform.translate
@@ -38,7 +47,7 @@ public class PlayerMove : MonoBehaviour
 
 
         //// Mengaktifkan lompatan player jika player menyentuh tanah
-        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.linearVelocity.y) < 0.001f)
+        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.linearVelocity.y) < 0.1f)
         {
             Debug.Log("Jump!");
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
